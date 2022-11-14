@@ -42,10 +42,11 @@ int main(int argc, char **argv)
   u64 r = atoll(argv[2]);
 
   //Print header
-  printf("%10s; %15s; %15s; %15s; %10s; %10s; %15s; %15s; %15s; %15s; %26s; %10s\n",
-	 "title",
+  printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+	 "#title",
 	 "KiB", "MiB", "GiB",
-	 "n", "r", "d", "min", "max", "mean", "stddev (%)", "MiB/s");
+	 "n", "r", "d", "min", "max", "mean", "stddev", "MiB/s");
+  
   
   run_benchmark("BASE",   reduc_base, n, r);
   
@@ -112,7 +113,8 @@ void run_benchmark(const ascii *title,
   f64 mbps = size_mib / (mean / 1e9);
 
   //
-  printf("%10s; %15.3lf; %15.3lf; %15.3lf; %10llu; %10llu; %15.3lf; %15.3lf; %15.3lf; %15.3lf; %15.3lf (%6.3lf %%); %10.3lf\n",
+   //
+  printf("%s\t%lf\t%lf\t%lf\t%llu\t%llu\t%lf\t%lf\t%lf\t%lf\t%lf\t%.3lf\n",
 	 title,
 	 2 * size_kib, //2 arrays
 	 2 * size_mib, //2 arrays
@@ -124,7 +126,6 @@ void run_benchmark(const ascii *title,
 	 max,
 	 mean,
 	 dev,
-	 (dev * 100.0 / mean),
 	 mbps);
   
   //
