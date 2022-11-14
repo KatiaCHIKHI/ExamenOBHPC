@@ -61,5 +61,12 @@ opt:
 	taskset 0x1 ./dgemm 100 100 > "resultats/clang/dgemmO3.dat"
 	$(MAKE) clean
 
+plot:
+	gnuplot -e "compiler = 'gcc'" plot.plt 
+	gnuplot -e "compiler = 'clang'" plot.plt
+	gnuplot "ccplot.plt"
+	gnuplot -e "compiler = 'gcc'" "optplot.plt"
+	gnuplot -e "compiler = 'clang'" "optplot.plt"
+
 clean:
 	@rm -Rf dgemm
