@@ -18,9 +18,11 @@ ifeq ($(CC),icx)
 else
 ifeq ($(CC),gcc)
 	$(CC) $(CFLAGS) $(OFLAGS) $(FILES) -o $@ $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "gcc/dgemm.dat"
 else
 ifeq ($(CC),clang)
 	$(CC) $(CFLAGS) $(OFLAGS) $(FILES) -o $@ $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "clang/dgemm.dat"
 else
 	@echo "ERROR: no compiler specified using CC. Possible values for CC: gcc, icc, icx, clang"
 endif
