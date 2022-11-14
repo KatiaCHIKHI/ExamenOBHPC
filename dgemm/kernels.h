@@ -10,3 +10,5 @@ void dgemm_ikj(f64 *restrict a, f64 *restrict b, f64 *restrict c, u64 n);
 void dgemm_iex(f64 *restrict a, f64 *restrict b, f64 *restrict c, u64 n);
 void dgemm_unroll(f64 *restrict a, f64 *restrict b, f64 *restrict c, u64 n);
 void dgemm_cblas(f64 *restrict a, f64 *restrict b, f64 *restrict c, u64 n);
+// unrolled 8 times
+void dgemm_unrollx8(f64 *restrict a, f64 *restrict b, f64 *restrict c, u64 n);
