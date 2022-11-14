@@ -1,0 +1,38 @@
+L1 cache:
+    coherency_line_size = 64
+    id = 0
+    level = 1
+    number_of_sets = 64
+    physical_line_partition = 1
+    shared_cpu_list = 0, 2
+    shared_cpu_map = 5
+    size = 32K
+    type = Data
+    uevent = 
+    ways_of_associativity = 8
+
+L2 cache:
+    coherency_line_size = 64
+    id = 0
+    level = 2
+    number_of_sets = 1024
+    physical_line_partition = 1
+    shared_cpu_list = 0, 2
+    shared_cpu_map = 5
+    size = 256K
+    type = Unified
+    uevent = 
+    ways_of_associativity = 4
+
+L3 cache:
+    coherency_line_size = 64
+    id = 0
+    level = 3 
+    number_of_sets = 4096
+    physical_line_partition = 1
+    shared_cpu_list = 0-3
+    shared_cpu_map = f
+    size = 3072k
+    type = Unified
+    uevent =
+    ways_of_associativity = 12
