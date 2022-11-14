@@ -1,6 +1,9 @@
 CFLAGS=-g -Wall
 
 OFLAGS=-O3
+OFLAG0=-O0
+OFLAG1=-O1
+OFLAG2=-O2
 
 INTEL_LFLAGS=-qmkl
 GNU_LFLAGS=-lm -lcblas
@@ -29,6 +32,34 @@ endif
 endif
 endif
 endif
+
+opt: 
+	gcc $(CFLAGS) $(OFLAG0) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/gcc/dgemmO0.dat"
+	$(MAKE) clean
+	gcc $(CFLAGS) $(OFLAG1) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/gcc/dgemmO1.dat"
+	$(MAKE) clean
+	gcc $(CFLAGS) $(OFLAG2) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/gcc/dgemmO2.dat"
+	$(MAKE) clean
+	gcc $(CFLAGS) $(OFLAGS) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/gcc/dgemmO3.dat"
+	$(MAKE) clean
+
+
+	clang $(CFLAGS) $(OFLAG0) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/clang/dgemmO0.dat"
+	$(MAKE) clean
+	clang $(CFLAGS) $(OFLAG1) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/clang/dgemmO1.dat"
+	$(MAKE) clean
+	clang $(CFLAGS) $(OFLAG2) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/clang/dgemmO2.dat"
+	$(MAKE) clean
+	clang $(CFLAGS) $(OFLAGS) $(FILES) -o dgemm $(GNU_LFLAGS)
+	taskset 0x1 ./dgemm 100 100 > "resultats/clang/dgemmO3.dat"
+	$(MAKE) clean
 
 clean:
 	@rm -Rf dgemm
